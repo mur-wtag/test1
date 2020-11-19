@@ -1,0 +1,31 @@
+<%= content_for :page_title, @asset %>
+
+<div class="mb-3"><%= link_to("Back to the Shop", root_path) %></div>
+
+<% present(object: @asset) do |presenter| %>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <table class="table table-striped">
+            <tbody>
+              <% presenter.asset_details.each do |key, value| %>
+                <tr>
+                  <td><%= key %>: </td>
+                  <td><%= value %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="col">
+          <div class="image d-flex justify-content-center align-items-center">
+            <%= @asset.image.present? ? image_tag(@asset.image.url) : 'No image found' %>
+          </div>
+        </div>
+      </div>
+
+      <%= link_to("Buy Now", asset_buy_path(@asset), class: "btn btn-primary") %>
+    </div>
+  </div>
+<% end %>

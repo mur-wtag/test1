@@ -22,15 +22,14 @@ gem 'shrine', '~> 3.0'
 gem 'bootsnap', require: false
 
 # Mailers
-gem 'inky-rb', require: 'inky'
-gem 'premailer-rails' # Stylesheet inlining for email **
-gem 'mailkick'
+gem 'mailcatcher'
 
 gem 'sass-rails', '~> 5.0', group: :assets
 
 group :development do
   gem 'rubocop'
   gem 'puma'
+  gem 'listen'
 end
 
 group :development, :test do

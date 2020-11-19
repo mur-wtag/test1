@@ -1,0 +1,6 @@
+<%= content_for :page_title, "Shop" %>
+<%= content_for :additional_header do %>
+  <%= link_to("Manage Assets", assets_path, class: "btn btn-primary") %>
+<% end %>
+
+<%= render("collection", assets: @assets, shop: true) %>

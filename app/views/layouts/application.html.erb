@@ -5,11 +5,29 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="<%= controller_name %> action-<%= action_name %>">
+  <div id="wrapper" class="d-flex">
+    <!-- Page Content -->
+    <div id="page-content-wrapper" class="w-100">
+      <div class="container-fluid p-0">
+        <main role="main">
+          <div class="content mx-auto mb-5">
+            <%= render "shared/page_header" %>
+
+            <% if flash[:notice] %>
+              <div class="alert alert-info"><%= flash[:notice] %></div>
+            <% end %>
+
+            <%= yield %>
+          </div>
+        </main>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+  </div>
   </body>
 </html>

@@ -1,0 +1,7 @@
+---
+floors:
+  default: 1
+  type: integer
+air_conditioned:
+  default: false
+  type: boolean

@@ -1,0 +1,38 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Owner</th>
+    <th>Asset Type</th>
+    <th>Address</th>
+    <th>Rooms</th>
+    <th>Sqr. Meter</th>
+    <th>Price</th>
+    <th colspan="1"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <% assets.each do |asset| %>
+      <tr>
+        <td><%= asset.owner %></td>
+        <td><%= asset.type.humanize %></td>
+        <td><%= asset.address %></td>
+        <td><%= asset.rooms %></td>
+        <td><%= asset.sqmt %></td>
+        <td><%= asset.price %></td>
+        <td>
+          <% if local_assigns[:shop] %>
+            <%= link_to("Details", asset_path(asset), class: "btn btn-sm btn-info") %>
+            <%= link_to("Buy Now", asset_buy_path(asset), class: "btn btn-sm btn-secondary") %>
+          <% else %>
+            <%= link_to('Edit', edit_asset_path(asset)) %> | <%= link_to('Destroy', asset_path(asset), method: :delete) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if assets.empty? %>
+  <p>No record found</p>
+<% end %>

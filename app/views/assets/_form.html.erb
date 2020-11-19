@@ -1,0 +1,62 @@
+<%= simple_form_for(@asset, as: :asset, url: url) do |f| %>
+  <%= render 'shared/error_messages', resource: @asset %>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <div class="form-inputs">
+            <% if f.object.persisted? %>
+              <div class="mb-3">Type: <b><%= @asset.type %></b></div>
+            <% else %>
+              <%= f.input :type, as: :hidden, input_html: { value: @asset.type } %>
+
+              <label>Asset Type</label>
+              <div class="dropdown mb-3">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= @asset.type %>
+                </button>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <% Asset::TYPES.each do |type| %>
+                    <%= link_to(type.humanize, new_asset_path(type: type.camelize), class: "dropdown-item") %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+
+            <%= f.input :owner %>
+            <%= f.input :address %>
+            <%= f.input :rooms %>
+            <%= f.input :sqmt, label: "Square Meter" %>
+            <%= f.input :price %>
+          </div>
+
+          <h4 class="my-3">Additional fields</h4>
+          <div class="additional-fields">
+            <% if @asset.is_a?(House) %>
+              <%= f.input :floors %>
+              <%= f.input :air_conditioned, as: :boolean %>
+            <% elsif @asset.is_a?(CommercialUnit) %>
+              <%= f.input :shops %>
+              <%= f.input :parking %>
+            <% elsif @asset.is_a?(ComplexBuilding) %>
+              <%= f.input :units %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col">
+          <% if f.object.image.present? %>
+            <%= f.check_box(:delete_image) %> Delete Existing image
+            <%= image_tag(f.object.image.url, class: "my-3") %>
+          <% end %>
+          <%= f.input :image, as: :file %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions d-flex justify-content-end mt-3">
+    <%= f.button :submit, @asset.persisted? ? 'Update' : 'Add', class: 'btn btn-primary' %>
+  </div>
+<% end %>

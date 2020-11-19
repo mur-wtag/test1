@@ -1,0 +1,27 @@
+body, html {
+  min-height: 100%;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: $gray-200;
+
+  .content {
+    @extend .pt-5;
+    max-width: 920px;
+
+    .image {
+      border: 3px dashed rgba($indigo, 0.05);
+      padding: 1rem;
+      min-width: 100%;
+      min-height: 100%;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+}

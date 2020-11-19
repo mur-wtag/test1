@@ -1,0 +1,7 @@
+---
+shops:
+  default: 1
+  type: integer
+parking:
+  default: 1
+  type: integer

@@ -1,0 +1,4 @@
+---
+units:
+  default: 1
+  type: integer

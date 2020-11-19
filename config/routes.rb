@@ -1,3 +1,11 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: 'assets#shop'
+
+  scope :owner do
+    resources :assets, only: %i[index new create edit update destroy show] do
+      get :buy
+    end
+  end
 end

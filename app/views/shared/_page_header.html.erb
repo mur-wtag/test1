@@ -1,0 +1,21 @@
+<% if content_for?(:page_title) %>
+  <div class="row">
+    <div class="col">
+      <h1>
+        <%= yield :page_title %>
+        <small>
+          <%= yield :subtitle %>
+        </small>
+      </h1>
+    </div>
+
+    <% if content_for?(:additional_header) %>
+      <div class="col text-right pr-0">
+        <div class="additional-header">
+          <%= yield :additional_header %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+

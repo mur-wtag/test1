@@ -1,0 +1,4 @@
+<%= content_for :page_title, "Add new asset" %>
+
+<div class="mb-3"><%= link_to("Back to the Asset list", assets_path) %></div>
+<%= render("form", url: assets_path) %>
